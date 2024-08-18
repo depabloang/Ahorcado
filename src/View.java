@@ -8,7 +8,7 @@ public class View {
 		}
 	}
 	public void showPhase(int phase) throws IllegalArgumentException {
-		
+		final String PHASE_0 = "\n";
 		final String[] PHASE_1 = {
 				"----------"
 			};
@@ -67,6 +67,9 @@ public class View {
 					"----------"
 			};
 			switch(phase) {
+			case 0: 
+				System.out.println(PHASE_0);
+				break;
 			case 1:
 				for(var line : PHASE_1)
 					System.out.println(line);
