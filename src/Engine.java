@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Engine {
 	private int currentPhase = 0;
@@ -28,14 +30,10 @@ public class Engine {
 	public void execute(View view, String word) {
 		view.showWord(word, this.coincidences);
 		view.showPhase(currentPhase);
-		showMessage("\nEnter a letter:");
+		print("\nEnter a letter:");
 		var user_input = processInput();
-		char[] coincidences = checkCoincidences(user_input, word);
-		view.showWord(word, coincidences);
-	}
-	
-	public void showMessage(String message) {
-		System.out.println(message);
+		boolean isCoincidence = checkCoincidences(user_input, word);
+		view.showWord(word, this.coincidences);
 	}
 	
 	public Character processInput() {
@@ -50,11 +48,18 @@ public class Engine {
 		return user_input;
 	}
 	
-	public char[] checkCoincidences(Character userInput, String word) {
-		//Sería algo como hacer un bucle al string y quedarse 
-		//con las posiciones en donde existe una coincidencia.
-		//Crear un array de chars
-		//O mejor, utilizar un REGEX
-		return null;
+	public boolean checkCoincidences(Character userInput, String word) {
+		Pattern pattern = Pattern.compile(userInput.toString(), Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(word);
+		if(matcher.find()) {
+			print("Encontrada letra");
+			return true;
+		}else {
+			return false;
+		}
+	
+	}
+	public void print(String message) {
+		System.out.println(message);
 	}
 }
