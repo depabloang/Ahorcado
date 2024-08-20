@@ -53,12 +53,12 @@ public class Model {
 	public boolean checkCoincidences(Character userInput, String word) {
 		Pattern pattern = Pattern.compile(userInput.toString(), Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(word);
-		if(matcher.find()) {
-			System.out.println("Encontrada letra");
-			return true;
-		}else {
-			return false;
-		}
+		if(matcher.find()) 
+			return true; 
+		return false;
+	}
 	
+	public char[] setCoincidences(char letter) {
+		return null;
 	}
 }

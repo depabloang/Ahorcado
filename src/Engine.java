@@ -1,7 +1,4 @@
-import java.util.Random;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Engine {
 	
@@ -32,7 +29,7 @@ public class Engine {
 	
 	public void welcomeMessage() {
 		System.out.println("Welcome to the Hangman game. The goal is to guess the hidden word"
-				+ "\nby suggesting letters. You have 7 attempts. Good luck and have fun!");
+				+ "\nby suggesting letters. You have 7 attempts. Good luck and have fun\n");
 	}
 	
 	
