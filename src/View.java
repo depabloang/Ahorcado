@@ -1,6 +1,13 @@
 
 public class View {
-
+	private int currentPhase = 0;
+	
+	public int getPhase() {
+		return this.currentPhase;
+	}
+	public void setPhase(int newPhase) {
+		this.currentPhase = newPhase;
+	}
 	public void showWord(String word, char[] resolved_letters) {
 		char[] letters = word.toUpperCase().toCharArray();
 		for(int i = 0; i < letters.length; i++) {
