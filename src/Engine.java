@@ -14,9 +14,9 @@ public class Engine {
 	}
 	public void execute() {
 		this.welcomeMessage();
-		char user_input;
+		String user_input;
 		while(true) {
-			view.showWord(model.word(), model.getCoincidences());
+			view.showWord(model.getCoincidences());
 			view.showPhase(view.getPhase());
 			System.out.println("\nEnter a letter:");
 			user_input = model.processInput();

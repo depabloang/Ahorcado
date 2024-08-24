@@ -8,11 +8,9 @@ public class View {
 	public void setPhase(int newPhase) {
 		this.currentPhase = newPhase;
 	}
-	public void showWord(String word, char[] resolved_letters) {
-		char[] letters = word.toUpperCase().toCharArray();
-		for(int i = 0; i < letters.length; i++) {
-			System.out.print("_ ");
-		}
+	public void showWord(char[] word) {
+		for(var letter : word) 
+			System.out.print(letter + " ");
 	}
 	public void showPhase(int phase) throws IllegalArgumentException {
 		final String PHASE_0 = "\n";

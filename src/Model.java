@@ -23,6 +23,7 @@ public class Model {
 	
 	public Model() {
 		word = getWord();
+		this.setCoincidences();
 	}
 	
 	public String word() {
@@ -32,33 +33,50 @@ public class Model {
 	public String getWord() {
 		Random r = new Random();
 		int random_number = r.nextInt(words.length);
-		return words[random_number];
+		return words[random_number].toUpperCase();
+		
 	}
 	
 	public char[] getCoincidences() {
 		return this.coincidences;
 	}
-	public Character processInput() {
+	
+	public void setCoincidences() {
+		this.coincidences = new char[this.word.length()];
+		for(int i = 0; i < coincidences.length; i++) 
+			coincidences[i] = '_';
+	}
+	
+	public String processInput() {
 		Scanner scan = new Scanner(System.in);
-		Character user_input;
+		String user_input;
 		try {
-			user_input = scan.nextLine().charAt(0);
+			user_input = scan.nextLine();
 		}catch(Exception e) {
 			user_input = null;
 		}
 		//scan.close();
-		return user_input;
+		return user_input.toUpperCase();
 	}
 	
-	public boolean checkCoincidences(Character userInput, String word) {
+	public boolean checkCoincidences(String userInput, String word) {
 		Pattern pattern = Pattern.compile(userInput.toString(), Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(word);
 		if(matcher.find()) {
-			System.out.println("Encontrada letra");
+			this.setNewCoincidences(word, userInput);
 			return true;
 		}else {
 			return false;
 		}
 	
+	}
+	
+	public void setNewCoincidences(String word, String userInput) {
+		for(int i = 0; i < word.length(); i++) {
+			if(word.charAt(i) == userInput.charAt(0)) {
+				this.coincidences[i] = word.charAt(i);
+			}
+		}
+		
 	}
 }
