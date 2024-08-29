@@ -1,16 +1,10 @@
 
 public class View {
-	private int currentPhase = 0;
 	
-	public int getPhase() {
-		return this.currentPhase;
-	}
-	public void setPhase(int newPhase) {
-		this.currentPhase = newPhase;
-	}
 	public void showWord(char[] word) {
 		for(var letter : word) 
 			System.out.print(letter + " ");
+		System.out.println();
 	}
 	public void showPhase(int phase) throws IllegalArgumentException {
 		final String PHASE_0 = "\n";
@@ -104,7 +98,7 @@ public class View {
 					System.out.println(line);
 				break;
 			default:
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Wrong number of phases. Probably a number bigger than 7");
 			}
 	}
 }

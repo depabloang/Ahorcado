@@ -5,8 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Model {
+	private int currentPhase = 0;
 	private char[] coincidences = null;
 	private String word;
+	private int status = 0; //0 -> Still playing, 1 -> Lost, 2 -> Win
 	final private String[] words = {
 			"random",
 			"public",
@@ -35,7 +37,6 @@ public class Model {
 		Random r = new Random();
 		int random_number = r.nextInt(words.length);
 		return words[random_number].toUpperCase();
-		
 	}
 	
 	public char[] getCoincidences() {
@@ -64,12 +65,10 @@ public class Model {
 		Pattern pattern = Pattern.compile(userInput.toString(), Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(word);
 		if(matcher.find()) {
-			this.setNewCoincidences(word, userInput);
 			return true;
-		}else {
-			return false;
 		}
-	
+		
+		return false;		
 	}
 	
 	public void setNewCoincidences(String word, String userInput) {
@@ -77,7 +76,44 @@ public class Model {
 			if(word.charAt(i) == userInput.charAt(0)) {
 				this.coincidences[i] = word.charAt(i);
 			}
+		}		
+	}
+	
+	public int getPhase() {
+		return this.currentPhase;
+	}
+	
+	public void setPhase(int newPhase) {
+		this.currentPhase = newPhase;
+	}
+	
+	public boolean checkResult() {
+		if(this.currentPhase >= 7) {
+			this.status = 1;
+			return true;
 		}
 		
+		for(var letter : this.coincidences) {
+			if(letter == '_') {
+				return false;
+			}
+		}
+		this.status = 2;
+		return true;
+	}
+	
+	public int getStatus() {
+		return this.status;
+	}
+	
+	public void setEndgameResult(int status) {
+		switch(status) {
+		case 1:
+			System.out.format("Sorry, YOU LOST. The word was %s. More luck next time :( %n", this.word);
+			break;
+		case 2:
+			System.out.format("CONGRATULATIONS! You found the secret word: %s%n", this.word);
+			break;
+		}
 	}
 }

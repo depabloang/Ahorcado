@@ -1,5 +1,4 @@
 
-
 public class Engine {
 	
 	private View view;
@@ -14,26 +13,26 @@ public class Engine {
 		String user_input;
 		while(true) {
 			view.showWord(model.getCoincidences());
-			view.showPhase(view.getPhase());
+			view.showPhase(model.getPhase());
 			System.out.println("\nEnter a letter:");
 			user_input = model.processInput();
 			if(model.checkCoincidences(user_input, model.word())) {
-				//Si hay coincidencia imprimir las letras que coinciden
+				model.setNewCoincidences(model.word(), user_input);
 			}else {
-				//Si no, aumentar la fase del ahorcado en 1
+				model.setPhase(model.getPhase() + 1);
 			}
+			if(model.checkResult()) {
+				view.showWord(model.getCoincidences());
+				view.showPhase(model.getPhase());
+				break;
+			}
+				
 		}
-
+		model.setEndgameResult(model.getStatus());
 	}
-	
-	
+		
 	public void welcomeMessage() {
 		System.out.println("Welcome to the Hangman game. The goal is to guess the hidden word"
 				+ "\nby suggesting letters. You have 7 attempts. Good luck and have fun\n");
 	}
-	
-	
-	
-	
-
 }
