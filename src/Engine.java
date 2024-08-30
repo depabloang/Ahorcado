@@ -1,8 +1,9 @@
 
 public class Engine {
 	
-	private View view;
 	private Model model;
+	private View view;
+	
 
 	public Engine(View v, Model m) {
 		view = v;
@@ -29,6 +30,7 @@ public class Engine {
 				
 		}
 		model.setEndgameResult(model.getStatus());
+		model.closeScan();
 	}
 		
 	public void welcomeMessage() {

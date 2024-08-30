@@ -1,11 +1,6 @@
 
 public class View {
-	
-	public void showWord(char[] word) {
-		for(var letter : word) 
-			System.out.print(letter + " ");
-		System.out.println();
-	}
+
 	public void showPhase(int phase) throws IllegalArgumentException {
 		final String PHASE_0 = "\n";
 		final String[] PHASE_1 = {
@@ -100,5 +95,12 @@ public class View {
 			default:
 				throw new IllegalArgumentException("Wrong number of phases. Probably a number bigger than 7");
 			}
+	}
+	
+	
+	public void showWord(char[] word) {
+		for(var letter : word) 
+			System.out.print(letter + " ");
+		System.out.println();
 	}
 }
